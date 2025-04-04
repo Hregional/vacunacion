@@ -1,6 +1,6 @@
 // src/index.ts
 import express, { Request, Response } from 'express';
-import { getServerCapabilities } from './services/fhirService';
+import { getServerCapabilities, createPatient } from './services/fhirService';
 
 const app = express();
 const port = 3000;
@@ -17,6 +17,30 @@ app.get('/fhir/capabilities', async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({
       error: 'Error al obtener capacidades del servidor FHIR'
+    });
+  }
+});
+
+app.post('/fhir/patient', async (req: Request, res: Response) => {
+  try{
+    // Construct the FHIR Patient resource
+
+    const patientResource = {
+      resourceType: 'Patient',
+      name: [
+        {
+          given: "Juanito",
+          family: "Perez",
+        }
+      ],
+    }
+
+    // Call the FHIR service to create the patient
+    const createdPatient = await createPatient(patientResource);
+    res.status(201).json(createdPatient);
+  }catch (error) {
+    res.status(500).json({
+      error: 'Error al crear paciente'
     });
   }
 });
