@@ -20,7 +20,11 @@
   },
   "dependencies": {
     "@types/express": "^5.0.1",
+    "@types/express-session": "^1.18.1",
+    "@types/keycloak-connect": "^4.5.4",
     "express": "^5.1.0",
-    "fhir-kit-client": "^1.9.2"
+    "express-session": "^1.18.1",
+    "fhir-kit-client": "^1.9.2",
+    "keycloak-connect": "^26.1.1"
   }
 }
