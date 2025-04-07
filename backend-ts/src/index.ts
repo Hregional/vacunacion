@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import { getServerCapabilities, createPatient } from './services/fhirService';
 import session from 'express-session';
 import Keycloak from 'keycloak-connect';
+import cors from 'cors';
 
 const app = express();
 const memoryStore = new session.MemoryStore();
@@ -13,6 +14,14 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: memoryStore,
+}));
+
+// Habilitar CORS para todos los orígenes (ajusta según necesites)
+app.use(cors({
+  origin: 'http://localhost:4200', // o '*', pero mejor especificar
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 const keycloakConfig = {
@@ -34,7 +43,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/protegido', keycloak.protect(), (req, res) => {
-  res.send('Este recurso está protegido y solo accesible con un token válido.');
+  res.json({ mensaje: '¡Acceso autorizado!' }); // Esto está bien
 });
 
 // Ruta para obtener capacidades
