@@ -4,6 +4,9 @@ import { getServerCapabilities, createPatient } from './services/fhirService';
 import session from 'express-session';
 import Keycloak from 'keycloak-connect';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Cargar variables de entorno desde .env
 
 const app = express();
 const memoryStore = new session.MemoryStore();
@@ -18,7 +21,7 @@ app.use(session({
 
 // Habilitar CORS para todos los orígenes (ajusta según necesites)
 app.use(cors({
-  origin: 'http://localhost:4200', // o '*', pero mejor especificar
+  origin: process.env.FRONTEND_URL,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -26,10 +29,10 @@ app.use(cors({
 
 const keycloakConfig = {
   'confidential-port': 0,
-  'auth-server-url': 'http://localhost:8080', // Base URL of Keycloak server
-  resource: 'vacunas-backend', // Correct property name for KeycloakConfig
+  'auth-server-url': process.env.KEYCLOAK_URL || 'http://default-keycloak-url', 
+   resource: process.env.KEYCLOAK_CLIENT_ID || 'default-client-id', 
   'ssl-required': 'external',
-  realm: 'myrealm',
+   realm: process.env.KEYCLOAK_REALM || 'default-realm',
   'bearer-only': true
 };
 
@@ -39,6 +42,7 @@ const keycloak = new Keycloak({ store: memoryStore }, keycloakConfig);
 app.use(keycloak.middleware());
 
 app.get('/', (req: Request, res: Response) => {
+  console.log("REAlm: ", process.env.KEYCLOAK_REALM);
   res.send('¡Hola desde Express con TypeScript!');
 });
 
