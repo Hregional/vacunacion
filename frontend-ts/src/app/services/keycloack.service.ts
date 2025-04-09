@@ -3,6 +3,8 @@ import Keycloak from 'keycloak-js';
 
 import { Injectable } from '@angular/core';
 
+import { environment } from '../../environments/environments';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +15,9 @@ export class KeycloakService {
   static init(): Promise<void> {
     return new Promise((resolve, reject) => {
       const keycloak = new Keycloak({
-        url: 'http://localhost:8080',        // URL de tu Keycloak
-        realm: 'myrealm',                   // Nombre del realm
-        clientId: 'vacunas-frontend'              // ID del cliente configurado
+        url: environment.keycloak.url,        // URL de tu Keycloak
+        realm: environment.keycloak.realm,                   // Nombre del realm
+        clientId: environment.keycloak.clientId              // ID del cliente configurado
       });
 
       keycloak.init({
