@@ -1,0 +1,38 @@
+<section class="row">
+    <div class="col-12 col-sm-6">
+        <h3>Vacuna</h3>
+
+        <!-- <input type="text" class="form-control" placeholder="DPI" [value]='cuiPersona()'
+            (change)="cuiPersona.set(txtDPI.value)" (input)="cuiPersona.set(txtDPI.value)" #txtDPI /> -->
+
+        <input type="text" class="form-control" placeholder="Tipo de vacuna" [value]='tipoDeVacuna()'
+            (change)="tipoDeVacuna.set(txtTipoDeVacuna.value)" (input)="tipoDeVacuna.set(txtTipoDeVacuna.value)"
+            #txtTipoDeVacuna />
+
+        <input type="date" class="form-control" placeholder="Fecha de aplicacion" [value]='fechaDeAplicacion()'
+            (change)="fechaDeAplicacion.set(txtFechaDeAplicacion.value)"
+            (input)="fechaDeAplicacion.set(txtFechaDeAplicacion.value)" #txtFechaDeAplicacion />
+
+        <input type="text" class="form-control" placeholder="Lote de Vacuna" [value]='loteDeVacuna()'
+            (change)="loteDeVacuna.set(txtLoteDeVacuna.value)" (input)="loteDeVacuna.set(txtLoteDeVacuna.value)"
+            #txtLoteDeVacuna />
+
+        <input type="text" class="form-control" placeholder="Medico encargado" [value]='nombreDelMedico()'
+            (change)="nombreDelMedico.set(txtNombreDelMedico.value)"
+            (input)="nombreDelMedico.set(txtNombreDelMedico.value)" #txtNombreDelMedico />
+
+        <button class="mt-2 btn btn-success" (click)="addVacuna()">Agregar</button>
+    </div>
+    <div class="col-12 col-sm-6">
+        <h3>Listado</h3>
+        <ul>
+            @for (vacuna of vacunas(); track vacuna.id) {
+            <li>
+                <h5>Aplicacion: {{vacuna.fechaDeAplicacion}}</h5>
+                <span>Tipo de vacuna: {{vacuna.tipoDeVacuna}}</span>
+                <p>DPI: {{vacuna.cuiPersona}}</p>
+            </li>
+            }
+        </ul>
+    </div>
+</section>

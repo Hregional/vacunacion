@@ -1,0 +1,19 @@
+<h3>{{listName()}}</h3>
+<ul>
+    @for (character of characters(); track character.id) {
+    @if(character.power >= 9000){
+    <li>
+        <span>{{character.name}}
+            <strong class="text-success">{{character.power}}</strong>
+        </span>
+    </li>
+    }@else if(character.power <= 1000) {<li>Aqui no hay nadie</li>}
+        @else {
+        <li>
+            <span>{{character.name}}
+                <strong class="text-danger">{{character.power}}</strong>
+            </span>
+        </li>
+        }}
+
+</ul>

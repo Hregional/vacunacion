@@ -1,0 +1,31 @@
+<div class="container mx-4 p-2">
+    <div class="col-12 col-sm-10">
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <span class="navbar-brand">Vacunas</span>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Nueva
+                </button>
+            </div>
+        </nav>
+
+        <app-modal-vacuna (vacunaAgregada)="handleVacunaAgregada($event)"></app-modal-vacuna>
+
+
+        @for (vacuna of vacunas(); track vacuna.id) {
+        <div class="card m-2">
+            <div class="card-header">
+                Tipo de vacuna: <cite title="Source Title">{{vacuna.tipoDeVacuna}}</cite>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>DPI: {{vacuna.cuiPersona}}</p>
+                    <p>Doctor que administró: {{vacuna.nombreDelMedico}}</p>
+                    <footer class="blockquote-footer">Aplicacion: {{vacuna.fechaDeAplicacion}}</footer>
+                </blockquote>
+            </div>
+        </div>
+        }
+    </div>
+</div>

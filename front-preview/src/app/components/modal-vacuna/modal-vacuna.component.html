@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Vacuna</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-sm-6">
+                    <input type="text" class="form-control" placeholder="Tipo de vacuna" [value]='tipoDeVacuna()'
+                        (change)="tipoDeVacuna.set(txtTipoDeVacuna.value)"
+                        (input)="tipoDeVacuna.set(txtTipoDeVacuna.value)" #txtTipoDeVacuna />
+
+                    <input type="date" class="form-control" placeholder="Fecha de aplicacion"
+                        [value]='fechaDeAplicacion()' (change)="fechaDeAplicacion.set(txtFechaDeAplicacion.value)"
+                        (input)="fechaDeAplicacion.set(txtFechaDeAplicacion.value)" #txtFechaDeAplicacion />
+
+                    <input type="text" class="form-control" placeholder="Lote de Vacuna" [value]='loteDeVacuna()'
+                        (change)="loteDeVacuna.set(txtLoteDeVacuna.value)"
+                        (input)="loteDeVacuna.set(txtLoteDeVacuna.value)" #txtLoteDeVacuna />
+
+                    <input type="text" class="form-control" placeholder="Medico encargado" [value]='nombreDelMedico()'
+                        (change)="nombreDelMedico.set(txtNombreDelMedico.value)"
+                        (input)="nombreDelMedico.set(txtNombreDelMedico.value)" #txtNombreDelMedico />
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                @if (fechaDeAplicacion() && nombreDelMedico() && tipoDeVacuna() && loteDeVacuna()) {
+                <button class="mt-2 btn btn-success" (click)="addVacuna()" data-bs-dismiss="modal">Agregar</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->

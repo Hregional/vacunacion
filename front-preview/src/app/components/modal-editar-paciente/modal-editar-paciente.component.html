@@ -1,0 +1,30 @@
+<div class="modal fade" id="editarPacienteModal" tabindex="-1" aria-labelledby="editarPacienteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editarPacienteModalLabel">Editar Paciente</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+
+                <input class="form-control mb-2" type="text" [value]="name()" (input)="name.set(txtName.value)"
+                    placeholder="Nombre" #txtName />
+                <input class="form-control mb-2" type="text" [value]="cui()" (input)="cui.set(txtCui.value)"
+                    placeholder="CUI" #txtCui />
+                <input class="form-control mb-2" type="text" [value]="fechaNacimiento()"
+                    (input)="fechaNacimiento.set(txtFechaDeNacimiento.value)" placeholder="Fecha de nacimiento"
+                    #txtFechaDeNacimiento />
+                <input class="form-control mb-2" type="text" [value]="direccion()"
+                    (input)="direccion.set(txtDireccion.value)" placeholder="Dirección" #txtDireccion />
+                <input class="form-control mb-2" type="text" [value]="telefono()"
+                    (input)="telefono.set(txtTelefono.value)" placeholder="Teléfono" #txtTelefono />
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-success" (click)="guardarCambios()" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

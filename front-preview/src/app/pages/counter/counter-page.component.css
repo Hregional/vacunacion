@@ -1,0 +1,18 @@
+.buttons {
+    display: flex;
+    gap: 2px;
+}
+
+button {
+    padding: 8px;
+    border: 1px solid rgba(44, 44, 44, 0.397);
+    background: salmon;
+    border-radius: 7px;
+    transition: 500ms;
+
+}
+
+button:hover {
+    background: rgb(255, 70, 49);
+    box-shadow: 0 0 8px rgb(255, 196, 247);
+}
